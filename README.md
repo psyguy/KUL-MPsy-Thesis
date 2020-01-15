@@ -1,3 +1,5 @@
-Due to technical issues, the commits of June could not be pushed to the remote repo, as a result the repo was renamed and now has a fresh start here.
+This repository invludes the code used in modeling and analyses of master's thesis project *Adaptive Rewiring on Coupled Logistic Maps with Heterogeneous Parameters* at KU Leuven, supervised by Prof. Cees van Leeuwen.
 
-The June commits (until 2019-06-12) are now only accessible locally, and the pre-June 2019 commits can be found on the [old repo](https://github.com/psyguy/Thesis-Codes-old).
+Thesis text (along with simulated model files and visualizations) are accessible on the Open Science Framework doi:[10.17605/osf.io/625D8](https://doi.org/10.17605/OSF.IO/625D8).
+
+The scripts within this repository suffice for reproducing the outcomes. Yet, it is not well-documented and surely needs quite some code-cleaning. Thus, feel free to contact me in case you intend to re-run the analyses.
