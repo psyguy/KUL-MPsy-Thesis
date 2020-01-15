@@ -1,0 +1,35 @@
+# History files
+
+
+.Rhistory
+.RDataTmp
+.Rapp
+.history
+.RData
+
+
+# Example code in package build process
+
+*-Ex.R
+
+
+
+# RStudio files
+
+.Rproj.user/
+
+
+
+# produced vignettes
+
+vignettes/*.html
+
+vignettes/*.pdf
+
+data*/
+
+
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+
+.httr-oauth
+.Rproj.user
