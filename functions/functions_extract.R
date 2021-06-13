@@ -1,7 +1,7 @@
 # rm(list = ls())
 
 source("./functions/functions_partition.R")
-
+librarian::shelf(tomwenseleers/export)
 
 # Plotting the connectivity matricies and networks at snapshots -----------
 
@@ -63,11 +63,11 @@ extract_coefs <- function(m,
   
   Clustering <- m %>% my_clustceof()
   Efficiency <- m %>% netmeas_efficiency()
-  Small.World <- Clustering*Efficiency
+  Average.Path.Length <- g_ %>% average.path.length(unconnected = TRUE)
+  Small.World <- Clustering/Average.Path.Length
   Modularity <- g_ %>% cluster_fast_greedy() %>% modularity()
   Assortativity <- g_ %>% assortativity.degree() %>% as.numeric()
   Rich.Club <- brainGraph::rich_club_coeff(g_)$phi %>% as.numeric()
-  Average.Path.Length <- g_ %>% average.path.length(unconnected = TRUE)
   Edge.Density <- m %>% sum() %>% sum()
   
   coefs <- data.frame(Clustering, 
