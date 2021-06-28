@@ -191,15 +191,18 @@ extract_plotnet <- function(m,
   E(g)$color <- NA
   E(g)[V(g)[partition == "minority"] %--% V(g)[partition == "minority"]]$color <- colors$mino
   set.seed(1)
-  g %>% plot(vertex.size = vertex.size*sqrt(ps)/2,
+ p <- g %>% plot(vertex.size = vertex.size*sqrt(ps)/2,
              vertex.color = vertex.color,
              add=TRUE,
              vertex.label = NA,
              edge.width = 1*ps,
              edge.curved= curve*ps)
   
-  if(save) graph2pdf(height = 10*ps, width = 10*ps,
+  if(save){print(p)
+    graph2pdf(height = 10*ps, width = 10*ps,
                      file = paste0(path.fig, title, "_network"))
+  }
+  return(list(p))
 }
 
 
