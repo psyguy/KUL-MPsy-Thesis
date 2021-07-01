@@ -97,7 +97,7 @@ make_random_graph <- function(size = 5,
   set.seed(seed)
   edges <- rep(0, size * (size - 1) / 2)
   
-  if (distribution == "binary") {
+  if (distribution == "binary"){
     ones <- sample.int(length(edges), num.links)
     edges[ones] <- 1
   }

@@ -73,7 +73,7 @@ rc.new <- function(x, N = 10){
   rco <- x %>%
     vec2mat() %>%
     graph_from_adjacency_matrix(mode="undirected") %>% 
-    rich_club_norm(N=N)
+    rich_club_norm()
   o <- cbind(rco$k,rco$norm, rco$p)
   
   colnames(o) <- c("Club Size", "Rich Club", "sig.level")

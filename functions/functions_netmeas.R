@@ -201,3 +201,98 @@ netmeas_rc <- function(v, non.normalized = TRUE, k = c(1:150)){
   # o %>% return()}
 }
 
+
+# Rich club from scratch --------------------------------------------------
+
+# m <- snp[1,]$adj.mat.vect
+
+
+
+netmeas_richclub.absolute <- function(m,
+                                      k_ = 100){
+  
+  if(is.null(dim(m))) m <- m %>% vec2mat()
+  
+  degrees <- rowSums(m)
+  
+  # finding nodes with higher-than-k degrees:
+  v_k <- degrees >= k_
+  # omitting nodes with lower degrees
+  m_k <- m
+  m_k[!v_k,] <- 0
+  m_k[,!v_k] <- 0
+  # calculating edge density of this pruned network, which is RC
+  e_v <- sum(m_k)/2 # number of edges in the pruned network
+  N_e <- sum(v_k) # number of nodes in th pruned network
+  rc_non.normalized <- ifelse(e_v == 0,
+                              0,
+                              e_v/(N_e*(N_e-1)/2)
+  )
+  return(rc_non.normalized)
+}
+
+netmeas_richclub <- function(m,
+                             k.max = 100,
+                             N.rand = 100,
+                             seed = 0){
+  
+  # m <- snp.new[3,19] %>% vec2mat()
+  if(is.null(dim(m))) m <- m %>% vec2mat()
+  
+  degrees <- rowSums(m)
+  
+  
+  # if(!is.null(N.rand)){
+  #   l <- dim(x)[2]
+  #   m <- vec2mat(x[[l]])
+  #   d.rest <- x[,-l]
+  #   d.rest <- do.call("rbind",
+  #                     replicate(k.max,
+  #                               d.rest,
+  #                               simplify = FALSE))
+  #   degrees <- rowSums(m)
+  # }
+  
+
+  # make random graphs
+  
+  m_rand <- list()
+  for(r in 1:N.rand){
+    set.seed(seed+r)
+    m_rand[[r]] <- sample_degseq(degrees,
+                                 method="simple") %>% 
+      as_adjacency_matrix(type = "both",
+                          names = FALSE) %>%
+      as.matrix()
+  }
+  
+  rc_normalized <- matrix(nrow = 0, ncol = 4) %>% as.data.frame()
+  colnames(rc_normalized) <- c("Club Size",
+                               "Absolute Rich Club",
+                               "Normalized Rich Club",
+                               "p.value")
+  
+  for(k in 1:k.max){
+    rc_this <- netmeas_richclub.absolute(m,
+                                         k_= k)
+    
+    rc_rand <- c()
+    for(r in 1:N.rand){
+      rc_rand[r] <- m_rand[[r]] %>%
+        netmeas_richclub.absolute(k_ = k) %>% 
+        as.numeric()
+    }
+    
+    
+    rc_norm <- rc_this/mean(rc_rand)
+    sig <- t.test(x = rc_rand,
+                  mu = rc_this,
+                  alternative='less')$p.value
+    rc_normalized[k,] <- c(k, rc_this, rc_norm, sig)
+  }
+  
+  # output <- cbind(d.rest, rc_normalized)
+  output <- rc_normalized
+  
+  return(output)
+}
