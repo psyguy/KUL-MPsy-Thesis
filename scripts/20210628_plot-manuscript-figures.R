@@ -103,37 +103,30 @@ make.df <- function(input.df, col){
 }
 
 # removing the dead brains
-snp.new <- snp.whole %>% 
+snp.new <- snp %>%
+  # filter(Partition != )
   filter(!(ID %in% c("HD2", "HD3", "SC1", "SC3")))
 
-re <- list()
-for(r in 1:6){
-  re <- netmeas_richclub(snp.new[3,]$adj.mat.vect %>% vec2mat(),
-                         k.max = 100,
-                         N.rand = 100)
-    
+
+snp.rc <- NULL
+system.time(
+for(r in 1:nrow(snp.new)){
+  print(paste("Now calculating",
+              r,
+              snp.new[r,]$ID,
+              snp.new[r,]$Partition))
+  system.time(
+  d.tmp <- netmeas_richclub(snp.new[r,],
+                            k.max = 200,
+                            N.rand = 200)
+  ) %>% print()
+  if(is.null(snp.rc)) snp.rc <- d.tmp
+  else snp.rc <- rbind(snp.rc,d.tmp)
 }
+)
 
 
-
-
-# rc.res <- matrix(nrow = 0, ncol = 5) %>% as.data.frame()
-# colnames(rc.res) <- c("ID", "fn", "Club Size", "Rich Club", "p.value")
-# i <- 1
-# for(i in 1:46){
-#   t1 <- Sys.time()
-#   xt <- snp.new[i,]
-#   rc.res <- rc.res %>% rbind(extract_RCnorm_sig(xt, 200))
-#   paste(i, "RC of", xt$newcodes, "took", Sys.time()-t1) %>% print()
-# }
-# 
-# save_vars("rc.res", prefix = "Normalized rich club of whole")
-
-
-
-
-
-
+save_vars("snp.rc", prefix = "Lean snp at 1e+6 with rich club")
 
 
 
