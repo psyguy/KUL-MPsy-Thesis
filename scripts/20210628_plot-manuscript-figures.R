@@ -21,6 +21,7 @@ source("functions/functions_netmeas.R")
 source("./functions/functions_extract.R")
 load("./data/snp_only-1e+6_20210628_1241.RData")
 load("./data/snp.lean_all_5k_20210628_1241.RData")
+load("./data/snp.rc_only-1e+6_20210701_2257.RData")
 
 # Change font in plots ----------------------------------------------------
 # https://stackoverflow.com/a/51906008/2275986
@@ -35,6 +36,7 @@ f <- font_files()
 
 # syntax: font_add(family = "<family_name>", regular = "/path/to/font/file")
 font_add("CMU Classical Serif", "cmunci.ttf")
+font_add("CMU Serif Upright Italic", "cmunui.ttf")
 
 font_families()
 
@@ -95,7 +97,7 @@ for(r in 1:nrow(snp.new)){
 )
 
 
-save_vars("snp.rc", prefix = "Lean snp at 1e+6 with rich club")
+save_vars("snp.rc", prefix = "snp.rc_only-1e+6")
 
 
 # Plotting rich club ------------------------------------------------------
@@ -141,7 +143,7 @@ rc.res <- snp.rc
 plot_richclub <- function(rc.res = snp.rc,
                           fam.code = "BL",
                           Partition_ = "whole"){
-  
+  scale.down <- 0.5
   if(Partition_ == "whole") max.clubsize <- 85
   if(Partition_ == "majority") max.clubsize <- 65
   if(Partition_ == "minority") max.clubsize <- 40
@@ -160,31 +162,64 @@ rc.this$`Normalized Rich Club`[is.nan(rc.this$`Normalized Rich Club`)] <- NA
 rc.this <- rc.this %>% na.omit()
 rc.this$rc.p[rc.this$p.value>0.01] <- NA
 
+font.cmu.serif.upright.italic <- "CMU Serif Upright Italic"
+font.cmu.classical.serif <- "CMU Classical Serif"
 
 rc.plot <- rc.this %>%  ggplot(
   aes(x = `Club Size`,
       y = `Normalized Rich Club`,
       colour = ID)) +
-  geom_line(size = 2, alpha = 0.35) +
-  # ggplot2::xlim(0,75) +
-  # ggplot2::ylim(0.5,2.20) +
+  geom_line(size = 1*scale.down, alpha = 0.45) +
+  labs(x = ifelse(fam.code == "SC", "Club size",""),
+       # y = ifelse(Partition_ == "whole", "Value","")
+       y = ""
+       # title = paste("Normalized Rich-Club for",
+       #               fam.code,
+       #               paste0("(", Partition_, ")"))
+  ) +
+  # theme_half_open() +
   theme_bw() +
-  ggtitle(paste("Normalized Rich Club for", fam.code)) +
-  theme(plot.title = element_text(hjust = 0.5),
-        # axis.title.y = element_blank(),
-        # axis.text.y = element_blank(),
-        # axis.ticks.y = element_blank(),
-        # axis.line = element_line(colour = "black"),
-        # panel.background = element_blank(),
+  # labs(x = ifelse(fam.code == "SD", "Club size",element_blank()),
+  #      y = ifelse(Partition_ == "whole", "Value",element_blank()),
+  #      # title = paste("Normalized Rich-Club for",
+  #      #               fam.code,
+  #      #               paste0("(", Partition_, ")"))
+  #      ) +
+  theme(text = element_text(size = 12, family = font.cmu.classical.serif),
+        # axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        plot.title = element_text(size = 10,
+                                  family = font.cmu.serif.upright.italic,
+                                  hjust = 0.5,
+                                  vjust = -12),
+        # plot.subtitle = element_text(size = 15,
+        #                              family = font.cmu.serif.upright.italic,
+        #                              hjust = 0.01,
+        #                              vjust = -18),
         legend.position = "none"
         ) +
-  geom_point(aes(x = `Club Size`,
+    geom_point(aes(x = `Club Size`,
                  y = rc.p,
                  color = ID),
              data = rc.this,
-             size = 1.2,
+             size = 0.5*scale.down,
              shape = 16) +
-  geom_hline(yintercept = 1,linetype="dashed") +
+  geom_hline(yintercept = 1,
+             size = 0.1,
+             linetype = "dashed") +
+    # annotate('text',
+    #          x = 0,
+    #          y = 4.2,
+    #          hjust = 0,
+    #          vjust = 1,
+    #          size = 10,
+    #          family = font.cmu.serif.upright.italic,
+    #          label = paste0(fam.code,
+    #                         " (",
+    #                         Partition_,
+    #                         ")"
+    #                         )
+    #         ) +
   scale_x_continuous(breaks = seq(0, max.clubsize, 20),
                      limits = c(0, max.clubsize)) +
   scale_y_continuous(breaks = seq(0, 4.5, .5),
@@ -194,12 +229,97 @@ return(rc.plot)
 
 }
 
-plot_richclub(fam.code = "BL")
-# p.bl <- 
-plot_richclub(fam.code = "HD", Partition_ = "majority")
+plot_labels <- function(label = "Whole",
+                        size = 5,
+                        angle = 0,
+                        family = "CMU Serif Upright Italic"){
+  ggplot() +
+    annotate(geom = 'text',
+             x=1, y=1,
+             label = label,
+             size = size,
+             family = family,
+             angle = angle) +
+    theme_void()
+}
 
-plot_grid(p.sd,p.bl)
+# plot_richclub(fam.code = "BL")
+# # p.bl <- 
+# plot_richclub(fam.code = "HD", Partition_ = "majority")
 
+
+font.cmu.serif.upright.italic <- "CMU Serif Upright Italic"
+font.cmu.classical.serif <- "CMU Classical Serif"
+
+col.title.height <- 0.2
+
+plot.rc.whole <- plot_grid(
+  plot_labels("  Whole"),
+  plot_richclub(fam.code = "HC", Partition_ = "whole"),
+  plot_richclub(fam.code = "HD", Partition_ = "whole"),
+  plot_richclub(fam.code = "BL", Partition_ = "whole"),
+  plot_richclub(fam.code = "SD", Partition_ = "whole"),
+  plot_richclub(fam.code = "SC", Partition_ = "whole"),
+  rel_heights = c(col.title.height,1,1,1,1,1),
+  nrow = 6
+)
+
+plot.rc.majority <- plot_grid(
+  plot_labels("  Majority"),
+  plot_richclub(fam.code = "HC", Partition_ = "majority"),
+  plot_richclub(fam.code = "HD", Partition_ = "majority"),
+  plot_richclub(fam.code = "BL", Partition_ = "majority"),
+  plot_richclub(fam.code = "SD", Partition_ = "majority"),
+  plot_richclub(fam.code = "SC", Partition_ = "majority"),
+  rel_heights = c(col.title.height,1,1,1,1,1),
+  nrow = 6
+)
+
+plot.rc.minority <- plot_grid(
+  plot_labels("  Minority"),
+  plot_richclub(fam.code = "HC", Partition_ = "minority"),
+  plot_richclub(fam.code = "HD", Partition_ = "minority"),
+  plot_richclub(fam.code = "BL", Partition_ = "minority"),
+  plot_richclub(fam.code = "SD", Partition_ = "minority"),
+  plot_richclub(fam.code = "SC", Partition_ = "minority"),
+  rel_heights = c(col.title.height,1,1,1,1,1),
+  nrow = 6
+)
+
+plot.vertical.labels <- plot_grid(plot_labels("  ", angle = 90),
+                                  plot_labels("HC", angle = 90),
+                                  plot_labels("HD", angle = 90),
+                                  plot_labels("BL", angle = 90),
+                                  plot_labels("SD", angle = 90),
+                                  plot_labels("SC", angle = 90),
+                                  plot_labels("  ", angle = 90),
+                                  rel_heights = c(0.5*col.title.height,
+                                                  1,1,1,1,1,
+                                                  0.25*col.title.height),
+                                  nrow = 7
+                                  )
+
+plot.all <- plot_grid(
+          plot.vertical.labels,
+          plot.rc.whole,
+          plot.rc.majority,
+          plot.rc.minority,
+          ncol = 4,
+          # hjust = -0.5,
+          # vjust = 1.5,
+          rel_widths = c(1,8.5,6.5,4))
+
+plot.final <- plot_grid(plot_labels("Normalized Rich-Club Coefficient",
+                                    size = 7.5),
+          plot.all,
+          nrow = 2,
+          rel_heights = c(1.5*col.title.height, 5)
+          )
+
+save_plot("Normalized-rich-club.pdf",
+          plot.final,
+          base_height = 11.69,
+          base_width = 8.27)
 
 
 # Trash pad ---------------------------------------------------------------
@@ -234,14 +354,17 @@ system.time(
 
 myFont <- "CMU Classical Serif"
 
-a <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +
   ggtitle("Fuel Efficiency of 32 Cars") +
   xlab("Weight (x1000 lb)") + ylab("Miles per Gallon") +
   theme(text = element_text(size = 16, family = myFont)) +
   annotate("text", 4, 30, label = 'Palatino Linotype',
            family = myFont, size = 10) +
-  annotate("text", 1, 11, label = 'Roboto', hjust = 0,
+  annotate("label", 1, 35,
+           label = 'Roboto',
+           hjust = 0,
+           # vjust = 1,
            family = myFont, size = 10)
 
 ## On-screen device
