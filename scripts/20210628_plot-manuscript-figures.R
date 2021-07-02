@@ -23,6 +23,52 @@ load("./data/snp_only-1e+6_20210628_1241.RData")
 load("./data/snp.lean_all_5k_20210628_1241.RData")
 load("./data/snp.rc_only-1e+6_20210701_2257.RData")
 
+
+make.df <- function(input.df, variable){
+  
+  d <- input.df %>% 
+    select("Partition",
+           "ID",
+           "Verbal.Description",
+           all_of(variable))
+  
+  output.df <- NULL
+  for(p in 1:4){
+    this.df <- select(d, -variable)[p,]
+    vec <- pull(d, variable)[[p]]
+    len <- length(vec)
+    x <- this.df[rep(seq_len(nrow(this.df)),
+                     each = len),]
+    
+    output.df <- output.df %>%
+      rbind(
+        cbind(x, vec, c(1:len))
+      )
+  }
+  
+  colnames(output.df) <- c("Partition",
+                           "ID",
+                           "Verbal.Description",
+                           variable,
+                           "Club Size")
+  output.df %>% return()
+}
+
+
+plot_labels <- function(label = "Whole",
+                        size = 5,
+                        angle = 0,
+                        family = "CMU Serif Upright Italic"){
+  ggplot() +
+    annotate(geom = 'text',
+             x=1, y=1,
+             label = label,
+             size = size,
+             family = family,
+             angle = angle) +
+    theme_void()
+}
+
 # Change font in plots ----------------------------------------------------
 # https://stackoverflow.com/a/51906008/2275986
 shelf(showtext)
@@ -71,6 +117,222 @@ for(i in 1:nrow(snp.whole)){
 }
 
 
+# Plotting evolutions -----------------------------------------------------
+
+plot_evolution <- function(df = snp.lean,
+                           variable = "Modularity",
+                           fam.code = "BL",
+                           Partition_ = "whole",
+                           scale.down = 1){
+  # df <- snp.lean
+  df <- df %>% 
+    select(Partition,
+           ID,
+           fn,
+           Rewiring,
+           all_of(variable)
+           ) %>% 
+    filter(Partition == Partition_) %>%
+    filter(grepl(fam.code, ID, fixed = TRUE))
+  colnames(df)[ncol(df)] <- "value"
+  
+  df$Rewiring <- df$Rewiring/1000
+  
+  max.y <- 1
+  
+  if(variable == "Average.Path.Length") max.y <- 6
+  if(variable == "Edge.Density") max.y <- 2
+  
+  
+  font.cmu.serif.upright.italic <- "CMU Serif Upright Italic"
+  font.cmu.classical.serif <- "CMU Classical Serif"
+  
+  ev.plot <- df %>% 
+    ggplot(
+      aes(x = Rewiring,
+        y = value,
+        colour = ID)) +
+    geom_line(size = 0.2*scale.down, alpha = .8) +
+    # labs(x = "Rewiring",
+    #      y = "Value"
+    # ) +
+    # theme_half_open() +
+    theme_bw() +
+    theme(text = element_text(size = 4, family = font.cmu.classical.serif),
+          axis.title.x = element_blank(),
+          axis.title.y = element_blank(),
+          legend.position = "none"
+    ) +
+    annotate('text',
+             x = 0,
+             y = max.y,
+             hjust = 0,
+             vjust = 1,
+             size = 3.5*scale.down,
+             family = font.cmu.serif.upright.italic,
+             label = gsub("\\.", " ", variable)
+    ) +
+  scale_x_continuous(breaks = seq(0, 1000, 250),
+                     limits = c(0, 1000)) +
+    scale_y_continuous(breaks = seq(0, max.y, max.y*0.2),
+                       limits = c(0, max.y))
+  return(ev.plot)
+  
+}
+
+plot_evolution.all <- function(df = snp.lean,
+                   fam.code = "BL",
+                   Partition_ = "whole",
+                   scale.down = 0.5){
+  plot_grid(
+    plot_evolution(df,"Clustering",
+                   fam.code, Partition_, scale.down),
+    plot_evolution(df,"Small.World",
+                   fam.code, Partition_, scale.down),
+    plot_evolution(df,"Assortativity",
+                   fam.code, Partition_, scale.down),
+    plot_evolution(df,"Average.Path.Length",
+                   fam.code, Partition_, scale.down),
+    plot_evolution(df,"Modularity",
+                   fam.code, Partition_, scale.down),
+    plot_evolution(df,"Edge.Density",
+                   fam.code, Partition_, scale.down),
+    ncol = 2,
+    byrow = TRUE)
+}
+
+spacer.margin <- 0.2
+spacer <- 0.1
+
+plot.ev.whole <- plot_grid(
+  plot_labels("  Whole"),
+  plot_evolution.all(fam.code = "HC", Partition_ = "whole"),
+  plot_labels(" "),
+  plot_evolution.all(fam.code = "HD", Partition_ = "whole"),
+  plot_labels(" "),
+  plot_evolution.all(fam.code = "BL", Partition_ = "whole"),
+  plot_labels(" "),
+  plot_evolution.all(fam.code = "SD", Partition_ = "whole"),
+  plot_labels(" "),
+  plot_evolution.all(fam.code = "SC", Partition_ = "whole"),
+  rel_heights = c(spacer.margin,
+                  1,
+                  spacer,
+                  1,
+                  spacer,
+                  1,
+                  spacer,
+                  1,
+                  spacer,
+                  1),
+  nrow = 6+4
+)
+
+plot.ev.majority <- plot_grid(
+  plot_labels("  Majority"),
+  plot_evolution.all(fam.code = "HC", Partition_ = "majority"),
+  plot_labels(" "),
+  plot_evolution.all(fam.code = "HD", Partition_ = "majority"),
+  plot_labels(" "),
+  plot_evolution.all(fam.code = "BL", Partition_ = "majority"),
+  plot_labels(" "),
+  plot_evolution.all(fam.code = "SD", Partition_ = "majority"),
+  plot_labels(" "),
+  plot_evolution.all(fam.code = "SC", Partition_ = "majority"),
+  rel_heights = c(spacer.margin,
+                  1,
+                  spacer,
+                  1,
+                  spacer,
+                  1,
+                  spacer,
+                  1,
+                  spacer,
+                  1),
+  nrow = 6+4
+)
+
+plot.ev.minority <- plot_grid(
+  plot_labels("  Minority"),
+  plot_evolution.all(fam.code = "HC", Partition_ = "minority"),
+  plot_labels(" "),
+  plot_evolution.all(fam.code = "HD", Partition_ = "minority"),
+  plot_labels(" "),
+  plot_evolution.all(fam.code = "BL", Partition_ = "minority"),
+  plot_labels(" "),
+  plot_evolution.all(fam.code = "SD", Partition_ = "minority"),
+  plot_labels(" "),
+  plot_evolution.all(fam.code = "SC", Partition_ = "minority"),
+  rel_heights = c(spacer.margin,
+                  1,
+                  spacer,
+                  1,
+                  spacer,
+                  1,
+                  spacer,
+                  1,
+                  spacer,
+                  1),
+  nrow = 6+4
+)
+
+plot.vertical.labels <- plot_grid(
+  plot_labels("  ", angle = 90),
+  plot_labels("HC", angle = 90),
+  plot_labels(" "),
+  plot_labels("HD", angle = 90),
+  plot_labels(" "),
+  plot_labels("BL", angle = 90),
+  plot_labels(" "),
+  plot_labels("SD", angle = 90),
+  plot_labels(" "),
+  plot_labels("SC", angle = 90),
+  rel_heights = c(spacer.margin,
+                  1,
+                  spacer,
+                  1,
+                  spacer,
+                  1,
+                  spacer,
+                  1,
+                  spacer,
+                  1),
+  nrow = 6+4
+)
+
+plot.all <- plot_grid(
+  plot.vertical.labels,
+  plot.ev.whole,
+  plot_labels(" "),
+  plot.ev.majority,
+  plot_labels(" "),
+  plot.ev.minority,
+  ncol = 4+2,
+  # hjust = -0.5,
+  # vjust = 1.5,
+  rel_widths = 
+    c(spacer.margin,
+    2,
+    spacer,
+    2,
+    spacer,
+    2)
+  )
+
+plot.final <- plot_grid(plot_labels("Network statistics per 1000 Rewirings",
+                                    size = 7.5),
+                        plot.all,
+                        nrow = 2,
+                        rel_heights = c(1.5*spacer.margin, 5)
+)
+
+save_plot("evolution-netstats.pdf",
+          plot.final,
+          base_height = 11.69,
+          base_width = 8.27)
+
+
+
 # Calculating rich club coefficient ---------------------------------------
 
 # removing the dead brains
@@ -98,40 +360,6 @@ for(r in 1:nrow(snp.new)){
 
 
 save_vars("snp.rc", prefix = "snp.rc_only-1e+6")
-
-
-# Plotting rich club ------------------------------------------------------
-
-
-make.df <- function(input.df, col){
-  
-  d <- input.df %>% 
-    select("Partition",
-           "ID",
-           "Verbal.Description",
-           col)
-  
-  output.df <- NULL
-  for(p in 1:4){
-    this.df <- select(d, -col)[p,]
-    vec <- pull(d, col)[[p]]
-    len <- length(vec)
-    x <- this.df[rep(seq_len(nrow(this.df)),
-                     each = len),]
-    
-    output.df <- output.df %>%
-      rbind(
-        cbind(x, vec, c(1:len))
-      )
-  }
-  
-  colnames(output.df) <- c("Partition",
-                           "ID",
-                           "Verbal.Description",
-                           col,
-                           "Club Size")
-  output.df %>% return()
-}
 
 
 # plotting RC values and significance levels ------------------------------
@@ -229,24 +457,6 @@ return(rc.plot)
 
 }
 
-plot_labels <- function(label = "Whole",
-                        size = 5,
-                        angle = 0,
-                        family = "CMU Serif Upright Italic"){
-  ggplot() +
-    annotate(geom = 'text',
-             x=1, y=1,
-             label = label,
-             size = size,
-             family = family,
-             angle = angle) +
-    theme_void()
-}
-
-# plot_richclub(fam.code = "BL")
-# # p.bl <- 
-# plot_richclub(fam.code = "HD", Partition_ = "majority")
-
 
 font.cmu.serif.upright.italic <- "CMU Serif Upright Italic"
 font.cmu.classical.serif <- "CMU Classical Serif"
@@ -299,7 +509,7 @@ plot.vertical.labels <- plot_grid(plot_labels("  ", angle = 90),
                                   nrow = 7
                                   )
 
-plot.all <- plot_grid(
+plot.rc.all <- plot_grid(
           plot.vertical.labels,
           plot.rc.whole,
           plot.rc.majority,
@@ -309,7 +519,7 @@ plot.all <- plot_grid(
           # vjust = 1.5,
           rel_widths = c(1,8.5,6.5,4))
 
-plot.final <- plot_grid(plot_labels("Normalized Rich-Club Coefficient",
+plot.rc.final <- plot_grid(plot_labels("Normalized Rich-Club Coefficient",
                                     size = 7.5),
           plot.all,
           nrow = 2,

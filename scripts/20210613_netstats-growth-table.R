@@ -7,7 +7,8 @@ source("./functions/functions_partition.R")
 # making random graphs and calculating mean values ------------------------
 
 r.seed <- 1:100
-families <<- c("OC", "OT", "BL", "UT", "UC") %>% rep(each = 10)
+# families <<- c("OC", "OT", "BL", "UT", "UC") %>% rep(each = 10)
+families <<- c("HC", "HD", "BL", "SD", "SC") %>% rep(each = 10)
 
 ran.graphs <- r.seed %>% 
   map(~make_random_graph(size = 300,
@@ -53,8 +54,8 @@ r.m_inter <- r.g_inter %>% ldply(quick.coefs) %>% colMeans() %>% abs()
 
 rand.means <- rbind(r.m_whole,r.m_mino,r.m_majo,r.m_inter) %>% as.data.frame()
 
-load("./data-pc/snp.lean_all_5k_20190713_1356.RData")
-
+# load("./data-pc/snp.lean_all_5k_20190713_1356.RData")
+load("./data/snp.lean_all_5k_20210628_1241.RData")
 
 
 snp.new <- snp.lean
