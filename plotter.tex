@@ -1,0 +1,18 @@
+% !TEX program = LuaLaTeX
+
+\documentclass{article}
+\usepackage[a4paper, margin=0in]{geometry}
+
+
+%The package tikz is available in pgf
+	\usepackage{tikz}
+	\begin{document}
+
+	\begin{figure}
+		%Do not try to scale figure in .tex or you loose font size consistency
+	    	\centering
+		%The code to input the plot is extremely simple
+		\input{plot_test.tex}
+		%Captions and Labels can be used since this is a figure environment
+	\end{figure}
+	\end{document} 

@@ -16,6 +16,7 @@
 
 library(librarian)
 shelf(cowplot)
+shelf(tikzDevice)
 source("functions/functions_my.R")
 source("functions/functions_netmeas.R")
 source("./functions/functions_extract.R")
@@ -158,7 +159,8 @@ plot_evolution <- function(df = snp.lean,
     # ) +
     # theme_half_open() +
     theme_bw() +
-    theme(text = element_text(size = 4, family = font.cmu.classical.serif),
+    theme(text = element_text(size = 10#, family = font.cmu.classical.serif
+                              ),
           axis.title.x = element_blank(),
           axis.title.y = element_blank(),
           legend.position = "none"
@@ -169,7 +171,7 @@ plot_evolution <- function(df = snp.lean,
              hjust = 0,
              vjust = 1,
              size = 3.5*scale.down,
-             family = font.cmu.serif.upright.italic,
+             # family = font.cmu.serif.upright.italic,
              label = gsub("\\.", " ", variable)
     ) +
   scale_x_continuous(breaks = seq(0, 1000, 250),
@@ -183,7 +185,7 @@ plot_evolution <- function(df = snp.lean,
 plot_evolution.all <- function(df = snp.lean,
                    fam.code = "BL",
                    Partition_ = "whole",
-                   scale.down = 0.5){
+                   scale.down = .85){
   plot_grid(
     plot_evolution(df,"Clustering",
                    fam.code, Partition_, scale.down),
@@ -326,11 +328,18 @@ plot.final <- plot_grid(plot_labels("Network statistics per 1000 Rewirings",
                         rel_heights = c(1.5*spacer.margin, 5)
 )
 
-save_plot("evolution-netstats.pdf",
-          plot.final,
-          base_height = 11.69,
-          base_width = 8.27)
+# save_plot("evolution-netstats_new.pdf",
+#           plot.final,
+#           base_height = 11.69,
+#           base_width = 8.27)
 
+
+
+tikz(file = "plot_test.tex", width = 8.27, height = 11.69)
+
+print(plot.final)
+
+dev.off()
 
 
 # Calculating rich club coefficient ---------------------------------------
@@ -530,6 +539,17 @@ save_plot("Normalized-rich-club.pdf",
           plot.final,
           base_height = 11.69,
           base_width = 8.27)
+
+
+tikz(file = "plot_test.tex", width = 8.27, height = 11.69)
+
+print(plot.rc.all)
+
+dev.off()
+
+
+# Plotting connectivities -------------------------------------------------
+
 
 
 # Trash pad ---------------------------------------------------------------

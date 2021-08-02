@@ -1,0 +1,560 @@
+This is LuaHBTeX, Version 1.14.0 (MiKTeX 21.6.28) (format=lualatex 2021.7.12)  31 JUL 2021 21:16
+ restricted system commands enabled.
+ file:line:error style messages enabled.
+**"c:/Users/haqiq001/OneDrive/UU/Personal projects/KUL-MPsy-Thesis/plotter"
+("c:/Users/haqiq001/OneDrive/UU/Personal projects/KUL-MPsy-Thesis/plotter.tex"
+LaTeX2e <2021-06-01> patch level 1
+Lua module: luaotfload 2021-05-21 3.18 Lua based OpenType font support
+Lua module: lualibs 2021-05-20 2.74 ConTeXt Lua standard libraries.
+Lua module: lualibs-extended 2021-05-20 2.74 ConTeXt Lua libraries -- extended c
+ollection.
+luaotfload | conf : Root cache directory is "C:/Users/haqiq001/AppData/Local/MiK
+TeX/luatex-cache/generic/names".
+luaotfload | init : Loading fontloader "fontloader-2021-05-20.lua" from kpse-res
+olved path "C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/luatex/luaotfloa
+d/fontloader-2021-05-20.lua".
+Lua-only attribute luaotfload@noligature = 1
+Lua-only attribute luaotfload@syllabe = 2
+luaotfload | init : Context OpenType loader version 3.116
+Inserting `luaotfload.node_processor' at position 1 in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' at position 1 in `hpack_filter'.
+Inserting `luaotfload.glyph_stream' at position 1 in `glyph_stream_provider'.
+Inserting `luaotfload.define_font' at position 1 in `define_font'.
+Lua-only attribute luaotfload_color_attribute = 3
+luaotfload | conf : Root cache directory is "C:/Users/haqiq001/AppData/Local/MiK
+TeX/luatex-cache/generic/names".
+Inserting `luaotfload.harf.strip_prefix' at position 1 in `find_opentype_file'.
+Inserting `luaotfload.harf.strip_prefix' at position 1 in `find_truetype_file'.
+Inserting `luaotfload.harf.finalize_vlist' at position 1 in `post_linebreak_filt
+er'.
+Inserting `luaotfload.harf.finalize_hlist' at position 2 in `hpack_filter'.
+Inserting `luaotfload.cleanup_files' at position 1 in `wrapup_run'.
+Inserting `luaotfload.harf.finalize_unicode' at position 1 in `finish_pdffile'.
+Inserting `luaotfload.glyphinfo' at position 1 in `glyph_info'.
+Lua-only attribute luaotfload.letterspace_done = 4
+Inserting `luaotfload.aux.set_sscale_dimens' at position 1 in `luaotfload.patch_
+font'.
+Inserting `luaotfload.aux.set_font_index' at position 2 in `luaotfload.patch_fon
+t'.
+Inserting `luaotfload.aux.patch_cambria_domh' at position 3 in `luaotfload.patch
+_font'.
+Inserting `luaotfload.aux.fixup_fontdata' at position 1 in `luaotfload.patch_fon
+t_unsafe'.
+Inserting `luaotfload.aux.set_capheight' at position 4 in `luaotfload.patch_font
+'.
+Inserting `luaotfload.aux.set_xheight' at position 5 in `luaotfload.patch_font'.
+Inserting `luaotfload.rewrite_fontname' at position 6 in `luaotfload.patch_font'
+. L3 programming layer <2021-06-18>
+Inserting `tracingstacklevels' at position 1 in `input_level_string'.
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/base/article.cls
+Document Class: article 2021/02/12 v1.4n Standard LaTeX document class
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/base/size10.clo
+File: size10.clo 2021/02/12 v1.4n Standard LaTeX file (size option)
+luaotfload | db : Font names database loaded from C:/Users/haqiq001/AppData/Loca
+l/MiKTeX/luatex-cache/generic/names/luaotfload-names.luc)
+\c@part=\count179
+\c@section=\count180
+\c@subsection=\count181
+\c@subsubsection=\count182
+\c@paragraph=\count183
+\c@subparagraph=\count184
+\c@figure=\count185
+\c@table=\count186
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/geometry/geometry.st
+y
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+) (C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+\Gm@cnth=\count187
+\Gm@cntv=\count188
+\c@Gm@tempcnt=\count189
+\Gm@bindingoffset=\dimen139
+\Gm@wd@mp=\dimen140
+\Gm@odd@mp=\dimen141
+\Gm@even@mp=\dimen142
+\Gm@layoutwidth=\dimen143
+\Gm@layoutheight=\dimen144
+\Gm@layouthoffset=\dimen145
+\Gm@layoutvoffset=\dimen146
+\Gm@dimlist=\toks17
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/geometry/geometry.cf
+g))
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/pgf/frontendlayer/ti
+kz.sty
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/pgf/basiclayer/pgf.s
+ty
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/pgf/utilities/pgfrcs
+.sty
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/utilities/pgfu
+til-common.tex
+\pgfutil@everybye=\toks18
+\pgfutil@tempdima=\dimen147
+\pgfutil@tempdimb=\dimen148
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/utilities/pgfu
+til-common-lists.tex))
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/utilities/pgfu
+til-latex.def
+\pgfutil@abb=\box50
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/utilities/pgfr
+cs.code.tex
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/pgf.revision.t
+ex)
+Package: pgfrcs 2021/05/15 v3.1.9a (3.1.9a)
+))
+Package: pgf 2021/05/15 v3.1.9a (3.1.9a)
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/pgf/basiclayer/pgfco
+re.sty
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/graphics/graphicx.st
+y
+Package: graphicx 2020/12/05 v1.2c Enhanced LaTeX Graphics (DPC,SPQR)
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/graphics/graphics.st
+y
+Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+ (C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/graphics-cfg/graphic
+s.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: luatex.def on input line 107.
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/graphics-def/luatex.
+def
+File: luatex.def 2021/06/01 v1.2c Graphics/color driver for luatex
+))
+\Gin@req@height=\dimen149
+\Gin@req@width=\dimen150
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/pgf/systemlayer/pgfs
+ys.sty
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/systemlayer/pg
+fsys.code.tex
+Package: pgfsys 2021/05/15 v3.1.9a (3.1.9a)
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/utilities/pgfk
+eys.code.tex
+\pgfkeys@pathtoks=\toks19
+\pgfkeys@temptoks=\toks20
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/utilities/pgfk
+eysfiltered.code.tex
+\pgfkeys@tmptoks=\toks21
+))
+\pgf@x=\dimen151
+\pgf@y=\dimen152
+\pgf@xa=\dimen153
+\pgf@ya=\dimen154
+\pgf@xb=\dimen155
+\pgf@yb=\dimen156
+\pgf@xc=\dimen157
+\pgf@yc=\dimen158
+\pgf@xd=\dimen159
+\pgf@yd=\dimen160
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count190
+\c@pgf@countb=\count191
+\c@pgf@countc=\count192
+\c@pgf@countd=\count193
+\t@pgf@toka=\toks22
+\t@pgf@tokb=\toks23
+\t@pgf@tokc=\toks24
+\pgf@sys@id@count=\count194
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/systemlayer/pg
+f.cfg
+File: pgf.cfg 2021/05/15 v3.1.9a (3.1.9a)
+)
+Driver file for pgf: pgfsys-luatex.def
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/systemlayer/pg
+fsys-luatex.def
+File: pgfsys-luatex.def 2021/05/15 v3.1.9a (3.1.9a)
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/systemlayer/pg
+fsys-common-pdf.def
+File: pgfsys-common-pdf.def 2021/05/15 v3.1.9a (3.1.9a)
+)))
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/systemlayer/pg
+fsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfsyssoftpath@smallbuffer@items=\count195
+\pgfsyssoftpath@bigbuffer@items=\count196
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/systemlayer/pg
+fsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+))
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/graphics-cfg/color.c
+fg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: luatex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/basiclayer/pgf
+core.code.tex
+Package: pgfcore 2021/05/15 v3.1.9a (3.1.9a)
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/math/pgfmath.c
+ode.tex
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/math/pgfmathca
+lc.code.tex
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/math/pgfmathut
+il.code.tex)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/math/pgfmathpa
+rser.code.tex
+\pgfmath@dimen=\dimen161
+\pgfmath@count=\count197
+\pgfmath@box=\box51
+\pgfmath@toks=\toks25
+\pgfmath@stack@operand=\toks26
+\pgfmath@stack@operation=\toks27
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/math/pgfmathfu
+nctions.code.tex
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/math/pgfmathfu
+nctions.basic.code.tex)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/math/pgfmathfu
+nctions.trigonometric.code.tex)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/math/pgfmathfu
+nctions.random.code.tex)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/math/pgfmathfu
+nctions.comparison.code.tex)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/math/pgfmathfu
+nctions.base.code.tex)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/math/pgfmathfu
+nctions.round.code.tex)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/math/pgfmathfu
+nctions.misc.code.tex)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/math/pgfmathfu
+nctions.integerarithmetics.code.tex)))
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/math/pgfmathfl
+oat.code.tex
+\c@pgfmathroundto@lastzeros=\count198
+))
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/math/pgfint.co
+de.tex)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/basiclayer/pgf
+corepoints.code.tex
+File: pgfcorepoints.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@picminx=\dimen162
+\pgf@picmaxx=\dimen163
+\pgf@picminy=\dimen164
+\pgf@picmaxy=\dimen165
+\pgf@pathminx=\dimen166
+\pgf@pathmaxx=\dimen167
+\pgf@pathminy=\dimen168
+\pgf@pathmaxy=\dimen169
+\pgf@xx=\dimen170
+\pgf@xy=\dimen171
+\pgf@yx=\dimen172
+\pgf@yy=\dimen173
+\pgf@zx=\dimen174
+\pgf@zy=\dimen175
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/basiclayer/pgf
+corepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@path@lastx=\dimen176
+\pgf@path@lasty=\dimen177
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/basiclayer/pgf
+corepathusage.code.tex
+File: pgfcorepathusage.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@shorten@end@additional=\dimen178
+\pgf@shorten@start@additional=\dimen179
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/basiclayer/pgf
+corescopes.code.tex
+File: pgfcorescopes.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfpic=\box52
+\pgf@hbox=\box53
+\pgf@layerbox@main=\box54
+\pgf@picture@serial@count=\count199
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/basiclayer/pgf
+coregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgflinewidth=\dimen180
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/basiclayer/pgf
+coretransformations.code.tex
+File: pgfcoretransformations.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@pt@x=\dimen181
+\pgf@pt@y=\dimen182
+\pgf@pt@temp=\dimen183
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/basiclayer/pgf
+corequick.code.tex
+File: pgfcorequick.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/basiclayer/pgf
+coreobjects.code.tex
+File: pgfcoreobjects.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/basiclayer/pgf
+corepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/basiclayer/pgf
+corearrows.code.tex
+File: pgfcorearrows.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfarrowsep=\dimen184
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/basiclayer/pgf
+coreshade.code.tex
+File: pgfcoreshade.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@max=\dimen185
+\pgf@sys@shading@range@num=\count266
+\pgf@shadingcount=\count267
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/basiclayer/pgf
+coreimage.code.tex
+File: pgfcoreimage.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/basiclayer/pgf
+coreexternal.code.tex
+File: pgfcoreexternal.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfexternal@startupbox=\box55
+))
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/basiclayer/pgf
+corelayers.code.tex
+File: pgfcorelayers.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/basiclayer/pgf
+coretransparency.code.tex
+File: pgfcoretransparency.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/basiclayer/pgf
+corepatterns.code.tex
+File: pgfcorepatterns.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/basiclayer/pgf
+corerdf.code.tex
+File: pgfcorerdf.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)))
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/modules/pgfmod
+uleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfnodeparttextbox=\box56
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/modules/pgfmod
+uleplot.code.tex
+File: pgfmoduleplot.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/pgf/compatibility/pg
+fcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@nodesepstart=\dimen186
+\pgf@nodesepend=\dimen187
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/pgf/compatibility/pg
+fcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2021/05/15 v3.1.9a (3.1.9a)
+))
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/pgf/utilities/pgffor
+.sty
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/pgf/utilities/pgfkey
+s.sty
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/utilities/pgfk
+eys.code.tex))
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/pgf/math/pgfmath.sty
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/math/pgfmath.c
+ode.tex))
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/utilities/pgff
+or.code.tex
+Package: pgffor 2021/05/15 v3.1.9a (3.1.9a)
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/math/pgfmath.c
+ode.tex)
+\pgffor@iter=\dimen188
+\pgffor@skip=\dimen189
+\pgffor@stack=\toks28
+\pgffor@toks=\toks29
+))
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/frontendlayer/
+tikz/tikz.code.tex
+Package: tikz 2021/05/15 v3.1.9a (3.1.9a)
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/libraries/pgfl
+ibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@plot@mark@count=\count268
+\pgfplotmarksize=\dimen190
+)
+\tikz@lastx=\dimen191
+\tikz@lasty=\dimen192
+\tikz@lastxsaved=\dimen193
+\tikz@lastysaved=\dimen194
+\tikz@lastmovetox=\dimen195
+\tikz@lastmovetoy=\dimen196
+\tikzleveldistance=\dimen197
+\tikzsiblingdistance=\dimen198
+\tikz@figbox=\box57
+\tikz@figbox@bg=\box58
+\tikz@tempbox=\box59
+\tikz@tempbox@bg=\box60
+\tikztreelevel=\count269
+\tikznumberofchildren=\count270
+\tikznumberofcurrentchild=\count271
+\tikz@fig@count=\count272
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/modules/pgfmod
+ulematrix.code.tex
+File: pgfmodulematrix.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfmatrixcurrentrow=\count273
+\pgfmatrixcurrentcolumn=\count274
+\pgf@matrix@numberofcolumns=\count275
+)
+\tikz@expandcount=\count276
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/generic/pgf/frontendlayer/
+tikz/libraries/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)))
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/l3backend/l3backend-
+luatex.def
+File: l3backend-luatex.def 2021-05-07 L3 backend support: PDF output (LuaTeX)
+\l__color_backend_stack_int=\count277
+\l__pdf_internal_box=\box61
+) (./plotter.aux)
+\openout1 = plotter.aux
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 9.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 9
+.
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: luatex
+*geometry* verbose mode - [ preamble ] result:
+* driver: luatex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(0.0pt, 597.50787pt, 0.0pt)
+* v-part:(T,H,B)=(0.0pt, 845.04684pt, 0.0pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=597.50787pt
+* \textheight=845.04684pt
+* \oddsidemargin=-72.26999pt
+* \evensidemargin=-72.26999pt
+* \topmargin=-109.26999pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf
+.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count278
+\scratchdimen=\dimen199
+\scratchbox=\box62
+\nofMPsegments=\count279
+\nofMParguments=\count280
+\everyMPshowfont=\toks30
+\MPscratchCnt=\count281
+\MPscratchDim=\dimen256
+\MPnumerator=\count282
+\makeMPintoPDFobject=\count283
+\everyMPtoPDFconversion=\toks31
+)
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/epstopdf-pkg/epstopd
+f-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(C:/Users/haqiq001/AppData/Local/Programs/MiKTeX/tex/latex/00miktex/epstopdf-sy
+s.cfg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+)) (./plot_test.tex)
+
+LaTeX Warning: Float too large for page by 11.79315pt on input line 17.
+
+[1{C:/Users/haqiq001/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
+(./plotter.aux))
+
+Here is how much of LuaTeX's memory you used:
+ 12449 strings out of 478064
+ 6940118,5906145 words of node,token memory allocated
+ 428 words of node memory still in use:
+   3 hlist, 1 vlist, 1 rule, 2 glue, 3 kern, 1 glyph, 7 attribute, 48 glue_spec,
+ 7 attribute_list, 3 write, 1 pdf_colorstack nodes
+   avail lists: 1:8,2:853616,3:453644,4:4444,5:270,6:2,7:406273,9:15552,11:372
+ 32424 multiletter control sequences out of 65536+600000
+ 23 fonts using 2647927 bytes
+ 102i,8n,102p,466b,774s stack positions out of 5000i,500n,10000p,200000b,80000s
+<//?/c:/users/haqiq001/appdata/local/programs/miktex/fonts/opentype/public/lm/lm
+roman10-regular.otf>
+Output written on plotter.pdf (1 page, 1000062 bytes).
+
+PDF statistics: 16 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 131072)
+ 16 words of extra memory for PDF output out of 10000 (max. 100000000)
+
