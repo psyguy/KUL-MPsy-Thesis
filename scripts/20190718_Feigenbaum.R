@@ -59,19 +59,21 @@ p <- ggplot(aes(a,
   cowplot::theme_half_open() +
   geom_vline(xintercept = c(1.7, 1.8, 1.9),
              color = "orangered",
-             size = 2,
-             alpha = .9) +
+             size = 1,
+             linetype = "dashed",
+             alpha = .6) +
   theme_bw() +
   theme(text = element_text(size = 25,
-                            family = "CMU Classical Serif"),
+                            family = "CMU Serif"),
         # axis.title.x = "\n $\\alpha$",
         # axis.title.y = "$x_t$",
         plot.title = element_blank(),
         legend.position = "none"
   ) +
-  geom_point(size = 0.01,
+  geom_point(size = 0.007,
              color = "azure4",
-             alpha = 0.7) +
+             shape = ".",
+             alpha = 0.9) +
   scale_x_continuous(breaks = seq(0, 2, 0.5),
                    limits = c(0, 2)) +
   scale_y_continuous(breaks = seq(-1, 1, 0.5),
@@ -81,7 +83,7 @@ p <- ggplot(aes(a,
   xlab(TeX("$\n \\alpha$"))
 
 
-cowplot::save_plot("Feigenbaum_0-to-2_2.png",
+cowplot::save_plot("Feigenbaum_0-to-2.pdf",
           p,
           base_height = 20,
           base_width = 20)

@@ -84,6 +84,7 @@ f <- font_files()
 # syntax: font_add(family = "<family_name>", regular = "/path/to/font/file")
 font_add("CMU Classical Serif", "cmunci.ttf")
 font_add("CMU Serif Upright Italic", "cmunui.ttf")
+font_add("CMU Serif", "cmunrm.ttf")
 
 font_families()
 

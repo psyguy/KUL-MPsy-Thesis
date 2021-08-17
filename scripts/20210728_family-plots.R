@@ -40,7 +40,7 @@ col.pallett <- inferno(10,1,0,1,-1)
 families <<- c("HC", "HD", "BL", "SD", "SC") %>% rep(each = 10)
 # functions used for plotting heatmaps ------------------------------------
 
-sim.hm <- function(m, title = "", col = col.pallett){
+sim.hm <- function(m, title = "", hm_size = 15, col = col.pallett){
   f <- families
   m <- m %>% as.matrix()# %>% unname()
   colnames(m) <- rownames(m) <- rep(1:10,5) %>% paste0(families,.)
@@ -52,38 +52,73 @@ sim.hm <- function(m, title = "", col = col.pallett){
             at = c(0, 0.05, 0.25, 0.5, 0.75, 0.95, 1),
             # labels = c("low", "zero", "high"),
             title = "Dissimilarity",
-            row_title = "I am a big column title",
+            # row_title = "I am a big column title",
             # font = 10,
-            legend_height = unit(5, "cm"),
-            grid_width = unit(0.5, "cm"),
+            legend_height = unit(hm_size/3, "cm"),
+            grid_width = unit(hm_size/30, "cm"),
+            title_gp = gpar(fontfamily = "CMU Serif",
+                            fontsize = 18),
+            labels_gp = gpar(fontfamily = "CMU Serif",
+                             fontsize = 18),
             title_position = "leftcenter-rot"),
+          
+          row_names_gp = gpar(fontfamily = "CMU Serif",
+                              fontsize = 12),
+          column_names_gp = gpar(fontfamily = "CMU Serif",
+                                 fontsize = 12),
+          
+          row_title_gp = gpar(fontfamily = "CMU Serif",
+                              fontsize = 20),
+          column_title_gp = gpar(fontfamily = "CMU Serif",
+                              fontsize = 20),
           na_col = "black",
           cluster_rows = FALSE,
           cluster_columns = FALSE,
           row_split = factor(f, levels = unique(f)),
           column_split = factor(f, levels = unique(f)),
-          width = unit(15, "cm"),
-          height = unit(15, "cm"),
-          row_gap = unit(1, "mm"),
-          column_gap = unit(1, "mm"), border = FALSE)
+          width = unit(hm_size, "cm"),
+          height = unit(hm_size, "cm"),
+          row_gap = unit(hm_size/15, "mm"),
+          column_gap = unit(hm_size/15, "mm"),
+          border = FALSE)
+}
+
+plot_labels <- function(label = "Whole",
+                        size = 5,
+                        angle = 0,
+                        family = "CMU Classical Serif"){
+  ggplot() +
+    annotate(geom = 'text',
+             x=1, y=1,
+             label = label,
+             size = size,
+             family = family,
+             angle = angle) +
+    theme_void()
 }
 
 f.corrplot <- function(m,
                        p,
                        type = "upper",
                        col = col.pallett){
-  colnames(m) <- rownames(m) <- families %>% unique()
+  colnames(m) <- rownames(m) <- families %>% unique() # %>% paste(" ", ., " ")
+  colnames(p) <- rownames(p) <- families %>% unique() # %>% paste(" ", ., "")
+  par(family="CMU Serif", cex = 1.5)
   corrplot(m,
            p.mat = p,
            method = "color",
            sig.level = 1e-10,
-           type = type,
+           type = "upper",
+           addgrid.col = "white",
            is.corr = T,
            col = rep(col,2),
            # addCoef.col = col.pallett[1],
            diag = TRUE,
            cl.pos = "n",
+           tl.col = "black",
+           tl.cex = 1.25,
            # tl.pos = "n",
+           number.font = 90,
            insig = "p-value")
   }
 
@@ -175,34 +210,130 @@ f <- families %>% unique() %>% rep(each = 2)
 g.d$Family <- factor(f, levels = unique(f))
 
 
-anatomical <- l.Dissimilarities.halved$Anatomical %>%
-  sim.hm() %>% 
+diag(l.Dissimilarities.halved$Anatomical) <- 0
+hm_anatomical <- l.Dissimilarities.halved$Anatomical %>%
+  sim.hm(hm_size = 20) %>% 
   draw() %>% 
   grid.grabExpr()
 
-functional <- l.Dissimilarities.halved$Functional %>%
-  sim.hm() %>% 
-  draw(row_title = "Heatmap list") %>% 
+diag(l.Dissimilarities.halved$Functional) <- 0
+hm_functional <- l.Dissimilarities.halved$Functional %>%
+  sim.hm(hm_size = 20) %>% 
+  draw() %>% 
   grid.grabExpr()
 
-cowplot::plot_grid(anatomical, functional, nrow = 2)
+shelf(cowplot)
+
+heatmaps <- plot_grid(hm_anatomical,
+                      plot_labels(" "),
+                      hm_functional,
+                      nrow = 3,
+                      rel_heights = c(1,0.05,1))
+
+heatmaps_labels <- plot_grid(plot_labels("Anatomical", size = 15, angle = 90),
+                             plot_labels(" "),
+                             plot_labels("Functional", size = 15, angle = 90),
+                             nrow = 3,
+                             rel_heights = c(1,0.05,1))
+
+fig5 <- plot_grid(heatmaps_labels,
+                  heatmaps,
+                  ncol = 2,
+                  rel_widths = c(0.05,1))
+
+
+save_plot("fig5.pdf",
+          fig5,
+          base_height = 1.6*11.69,
+          base_width = 1.4*8.27)
 
 
 colnames(g.d)[1] <- "Network"
+
+
 
 f.corrplot(l.Contrast$`Anatomical NetSimile dissimilarity`, l.Contrast$`Anatomical HHG dissimilarity`)
 f.corrplot(l.Contrast$`Functional NetSimile dissimilarity`, l.Contrast$`Functional HHG dissimilarity`)
 
 
+col_fun = colorRamp2(seq(0,.69,0.1), col.pallett[1:7])
+lgd = Legend(at = seq(0,0.7,0.1),
+             # labels = c("low", "zero", "high"),
+             title = "Contrast",
+             col_fun = col_fun,
+             # row_title = "I am a big column title",
+             # font = 10,
+             legend_height = unit(5, "cm"),
+             grid_width = unit(1, "cm"),
+             # direction = "horizontal", 
+             # title_position = "topcenter"
+             title_position = "leftcenter-rot",
+             title_gp = gpar(fontfamily = "CMU Serif",
+                             col = "Black", fontsize = 18),
+             labels_gp = gpar(fontfamily = "CMU Serif",
+                              col = "Black", fontsize = 18))
+draw(lgd,
+     x = unit(0.05, "npc"),
+     y = unit(0.05, "npc"),
+     just = c("left", "bottom"))
+
+
+
 # Plotting Dissimilarity/Contrast/Differentiation -------------------------
 
-g.d %>% ggplot(aes(x = `Network`,
-                   y = Differentiation,
-                   fill = Family),
-               title = "avg") +
+fig7 <- g.d %>%
+  ggplot(aes(x = `Network`,
+             y = Differentiation,
+             fill = Family),
+             title = "avg") +
   # ylim(-.42,.42) +
-  geom_bar(position = position_dodge(width=0.85), size = 2, width = 0.80, stat="identity") +
-  geom_hline(yintercept = 1,linetype="dashed")
+  geom_bar(position = position_dodge(width=0.85),
+           size = 2,
+           width = 0.80,
+           stat="identity") +
+  theme_bw() +
+  # labs(x = ifelse(fam.code == "SD", "Club size",element_blank()),
+  #      y = ifelse(Partition_ == "whole", "Value",element_blank()),
+  #      # title = paste("Normalized Rich-Club for",
+  #      #               fam.code,
+  #      #               paste0("(", Partition_, ")"))
+  #      ) +
+  theme(text = element_text(size = 20, family = "CMU Serif"),
+        # axis.title.x = element_blank(),
+        plot.title = element_text(size = 10,
+                                  family = "CMU Serif",
+                                  hjust = 0.5,
+                                  vjust = -12),
+        # plot.subtitle = element_text(size = 15,
+        #                              family = font.cmu.serif.upright.italic,
+        #                              hjust = 0.01,
+        #                              vjust = -18),
+        legend.position = "none"
+        # axis.title.y = element_text("Differentiation",
+        #                             size = 20, family = "CMU Serif")
+  ) +
+# scale_x_continuous(breaks = seq(0, max.clubsize, 20),
+#                    limits = c(0, max.clubsize)) +
+  scale_y_continuous(breaks = seq(0, 1.3, .25),
+                     limits = c(0, 1.3)) +
+  geom_text(aes(label = Family),
+            size = 5,
+            family = "CMU Serif",
+            position = position_dodge(width=.85),
+            vjust = -0.5) +
+  # scale_x_discrete() +
+  coord_fixed() +
+  geom_hline(yintercept = 1,linetype="dashed") +
+  scale_fill_viridis_d(direction = -1,
+                       begin = 0,
+                       end = 0.85) +
+  xlab("Network") +
+  ylab("Differentiation")
+
+save_plot("fig7.pdf",
+          fig7,
+          base_height = 6,
+          base_width = 8.27)
 
 
 # Plotting graphs ---------------------------------------------------------
@@ -210,7 +341,7 @@ g.d %>% ggplot(aes(x = `Network`,
 
 
 ## Change the index in this line
-index <- 4 # should be 1:4, for NetSimile/HHG of Anat/Func
+index <- 4 # should be 2 or 4, for NetSimile of Anat/Func
 plot.name <- pull(Differentiation, .id)[index] %>% gsub(" .*","",.)
 plot.name %>% paste("Graph -",.) %>% print()
 differ <- Differentiation[index,] %>%
@@ -249,19 +380,59 @@ radian.rescale <- function(x, start=0, direction=1) {
   c.rotate(scales::rescale(x, c(0, 2 * pi), range(x)))
 }
 
-la <- layout.circle(g)
 
-par(mar=c(0,0,0,0)+1.7)
-g %>% plot(edge.width = 40*E(g)$weight,
-           main = gsub(" dissimilarity", "", plot.name),
-           vertex.size = 40*abs(differ),
-           vertex.label.dist = 3.5,
-           # vertex.frame.color = v.frame.color,
+la <- layout.circle(g)
+# par(mar=c(0,0,0,0)+1.7)
+
+# par(mfrow=c(1,1))
+
+par(mar = c(0,0,0,10))
+g %>% plot(edge.width = 30*E(g)$weight,
+           # main = gsub(" dissimilarity", "", plot.name),
+           # family = "CMU Serif",
+           vertex.frame.color = NA, 
+           vertex.label.family = "CMU Serif",
+           vertex.label.cex = 2,
+           vertex.size = 35*abs(differ),
+           vertex.label.color = "black",
+           # vertex.label.dist = 5.5,
+           vertex.frame.color = NULL,
            vertex.frame.width = 100,
-           vertex.label.degree = radian.rescale(x=1:5, direction=-1, start=6),
+           # vertex.label.degree = radian.rescale(x=1:5, direction=-1, start=6),
            layout=la
            )
 
+col_fun = colorRamp2(seq(0,.79,0.1), col.pallett[1:8])
+lgd = Legend(at = seq(0,0.8,0.2),
+             # labels = c("low", "zero", "high"),
+             title = "Contrast",
+             col_fun = col_fun,
+             # row_title = "I am a big column title",
+             # font = 10,
+             legend_height = unit(5, "cm"),
+             grid_width = unit(1, "cm"),
+             # direction = "horizontal", 
+             # title_position = "topcenter"
+             title_position = "leftcenter-rot",
+             title_gp = gpar(fontfamily = "CMU Serif",
+                             col = "Black", fontsize = 18),
+             labels_gp = gpar(fontfamily = "CMU Serif",
+                              col = "Black", fontsize = 18))
+draw(lgd,
+     x = unit(0.1, "npc"),
+     y = unit(0.1, "npc"),
+     just = c("left", "bottom"))
+
+
+
+# x <- recordPlot()
+# 
+# title(gsub(" dissimilarity", "", plot.name),
+#       family = "CMU Serif",
+#       cex.main=3,
+#       col.main="green")
+# 
+# plot_grid(x,x, nrow = 2)
 
 
 # compareing Contrast_Anatomical and Contrast_Functional ------------------
